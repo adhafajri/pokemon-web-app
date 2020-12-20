@@ -1,0 +1,146 @@
+.navbar {
+  background: white;
+  align-items: center;
+  font-size: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 4px 6px -1px;
+  transition: 250ms ease;
+}
+
+.navbar-bottom {
+  display: flex;
+  background: white;
+  position: fixed;
+  bottom: 0 !important;
+  top: auto;
+  width: -webkit-fill-available;
+  z-index: 999;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px -2px 6px -1px;
+  transition: 250ms ease;
+  justify-content: center;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  margin-left: 1rem;
+  display: flex;
+  transition: 250ms ease;
+}
+
+.img-logo {
+  height: 8vmin;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  text-align: center;
+  margin-right: 1rem;
+  transition: 250ms ease;
+}
+
+.navbar-item {
+  width: 200px;
+}
+
+.img-item {
+  height: 8vmin;
+  transition: 250ms ease;
+}
+
+.navbar-links {
+  color: black;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 100%;
+  filter: grayscale(100%);
+  transition: 250ms ease;
+}
+
+.navbar-links:hover {
+  background: gray;
+  color: white;
+  filter: grayscale(0%);
+  transition: 250ms ease;
+}
+
+.navbar-links.back:hover {
+  cursor: pointer;
+  color: black;
+  filter: invert(1);
+}
+
+.active {
+  background: gray;
+  color: white;
+  filter: grayscale(0%);
+  transition: 250ms ease;
+}
+
+.navbar-text {
+  margin-top: 6px;
+}
+
+.fa-bars {
+  color: #fff;
+}
+
+.display-none {
+  display: none;
+}
+
+.flex-start {
+  justify-content: flex-start !important;
+}
+
+@media screen and (max-width: 960px) {
+  .navbar-bottom {
+    display: inline;
+    background: white;
+    position: fixed;
+    bottom: 0 !important;
+    top: auto;
+    width: -webkit-fill-available;
+    z-index: 999;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px -2px 6px -1px;
+    transition: 250ms ease;
+  }
+
+  .navbar-item {
+    width: 120px;
+    transition: 250ms ease;
+  }
+
+  .navbar > .navbar-container > .navbar-menu > .navbar-item {
+    width: 60px;
+    transition: 250ms ease;
+  }
+
+  .navbar-text {
+    font-size: 0.5rem;
+  }
+
+  .img-item {
+    height: 6vmin;
+    transition: 250ms ease;
+  }
+
+  .navbar-menu {
+    margin-right: 0;
+    transition: 250ms;
+    justify-content: center;
+    width: -webkit-fill-available;
+    transition: 250ms ease;
+  }
+}

@@ -1,0 +1,286 @@
+.details-container {
+  display: flex;
+  margin-bottom: 6rem;
+}
+
+.details-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px;
+}
+
+.details-img {
+  height: 260px;
+  background-color: whitesmoke;
+  border-radius: 15rem;
+}
+
+.details-name {
+  border: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-top: -1rem;
+  padding: 16px;
+  border-radius: 1rem;
+  background-color: white;
+  box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
+}
+
+.details-types-container {
+  display: flex;
+  justify-content: center;
+}
+
+.details {
+  margin: 16px;
+  display: flex;
+  border-left: 1px solid #ccc !important;
+}
+
+.details-pokemon-container {
+  margin: 16px;
+}
+
+.details-pokemon-container:last-child {
+  margin-left: 64px;
+}
+
+.details-title {
+  margin: 16px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.details-values {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.details-value {
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 16px;
+  margin: 16px;
+  border-radius: 2rem;
+  box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
+  background-color: white;
+}
+
+.details-name-container {
+  display: flex;
+  align-items: center;
+}
+
+.details-edit-container {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 1rem;
+  margin-left: -0.8rem;
+  margin-bottom: 1rem;
+  background-color: #ffcb05;
+  box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  transition: 250ms ease;
+}
+
+.details-edit-container:hover {
+  box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 12px 0px;
+  transform: matrix(1, 0, 0, 1, 0, 2);
+  transition: 250ms ease;
+}
+
+.details-edit {
+  height: 16px;
+}
+
+.details-button-container {
+  position: fixed;
+  bottom: -1%;
+  left: 32px;
+  z-index: 998;
+  color: black;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 250ms ease;
+}
+
+.details-button-container:hover {
+  bottom: 3%;
+}
+
+.details-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 10px;
+  background-color: white;
+  filter: grayscale(100%);
+  box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
+  transition: 250ms ease;
+}
+
+.details-button:hover {
+  background: gray;
+  color: white;
+  filter: grayscale(0%);
+  transition: 250ms ease;
+}
+
+.details-button-img {
+  height: 7vmin;
+}
+
+.details-button-text {
+  font-size: 1rem;
+  margin-top: 6px;
+}
+
+.bug {
+  background-color: #729f3f;
+  color: white;
+}
+
+.dark {
+  background-color: #729f3f;
+  color: white;
+}
+
+.dragon {
+  background-color: #f16e57;
+  color: white;
+}
+
+.electric {
+  background-color: #f16e57;
+}
+
+.fairy {
+  background-color: #fdb9e9;
+}
+
+.fighting {
+  background-color: #d56723;
+  color: white;
+}
+
+.fire {
+  background-color: #fd7d24;
+  color: white;
+}
+
+.flying {
+  background-color: #bdb9b8;
+}
+
+.ghost {
+  background-color: #7b62a3;
+  color: white;
+}
+
+.grass {
+  background-color: #9ccd51;
+}
+
+.ground {
+  background-color: #ab9842;
+}
+
+.ice {
+  background-color: #51c4e7;
+}
+
+.normal {
+  background-color: #a4acaf;
+}
+
+.poison {
+  background-color: #b97fc9;
+  color: white;
+}
+
+.psychic {
+  background-color: #f366b9;
+  color: white;
+}
+
+.rock {
+  background-color: #a38c21;
+  color: white;
+}
+
+.steel {
+  background-color: #9eb7b8;
+}
+
+.water {
+  background-color: #4592c4;
+  color: white;
+}
+
+@media screen and (max-width: 960px) {
+  .details-container {
+    flex-direction: column;
+    margin-bottom: 15rem;
+  }
+
+  .details-name {
+    font-size: 1.2rem;
+  }
+
+  .details {
+    flex-direction: column;
+    border-left: none !important;
+    border-top: 1px solid #ccc !important;
+  }
+
+  .details-pokemon-container:last-child {
+    margin-left: 16px;
+  }
+
+  .details-button-container {
+    bottom: 12vmin;
+    left: 45%;
+    right: 45%;
+    transition: 250ms ease;
+  }
+  .details-button-container:hover {
+    bottom: 15%;
+    transition: 250ms ease;
+  }
+
+  .details-button-img {
+    height: 10vmin;
+  }
+
+  .details-img {
+    height: 240px;
+  }
+
+  .details-title {
+    font-size: 1rem;
+  }
+
+  .details-values {
+    justify-content: flex-start;
+  }
+
+  .details-value {
+    text-transform: capitalize;
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .details-button-text {
+    font-size: 1rem;
+  }
+}
