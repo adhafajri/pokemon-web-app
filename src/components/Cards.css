@@ -100,9 +100,14 @@
     margin: 4px;
   }
 
+  .card-link {
+    width: auto;
+  }
+
   .button {
     padding: 8px;
     margin: 8px;
+    flex-direction: column;
   }
 
   .card-button-text {

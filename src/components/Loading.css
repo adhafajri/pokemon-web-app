@@ -7,6 +7,13 @@
   height: 25vmin;
 }
 
+.loading-text {
+  margin: 16px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 5vmin;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .loading-image {
     animation: Spin infinite 20s linear;

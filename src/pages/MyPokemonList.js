@@ -29,7 +29,7 @@ class MyPokemonList extends React.Component {
         </>
       );
     } else {
-      return <Loading />;
+      return (<Loading text={"You have no Pokemons yet!"} />);
     }
   }
 }
