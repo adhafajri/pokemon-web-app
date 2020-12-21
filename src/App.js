@@ -21,10 +21,10 @@ function App() {
           <Navbar />
           <div className="container">
             <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/my-pokemon-list" exact component={MyPokemonList} />
-              <Route path="/pokemon-details" component={PokemonDetails} />
-              <Route path="/my-pokemon-action" component={MyPokemonAction} />
+              <Route path="/pokemon-web-app/" exact component={Home} />
+              <Route path="/pokemon-web-app/my-pokemon-list" exact component={MyPokemonList} />
+              <Route path="/pokemon-web-app/pokemon-details" component={PokemonDetails} />
+              <Route path="/pokemon-web-app/my-pokemon-action" component={MyPokemonAction} />
             </Switch>
           </div>
         </Router>
