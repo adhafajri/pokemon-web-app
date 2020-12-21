@@ -19,10 +19,6 @@ function Navbar() {
         setLocationKeys([location.key]);
       }
 
-  
-
-      setDetailsPageActive(history.location.pathname === "/pokemon-details" ? true : false);
-
       if (history.action === "POP") {
         if (locationKeys[1] === location.key) {
           if (location.pathname === "/my-pokemon-action") {
@@ -45,6 +41,7 @@ function Navbar() {
     if (history.location.pathname === "/my-pokemon-action") {
       window.addEventListener("beforeunload", history.replace("/"));
     }
+    setDetailsPageActive(history.location.pathname === "/pokemon-details" ? true : false);
   }, [history]);
 
   return (

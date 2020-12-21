@@ -13,7 +13,13 @@ function Details(result) {
   console.log(result.pokemon);
   const data = result ? result.pokemon : null;
   console.log(data);
-  const isFromMyPokemonList = data ? (data.pokemon ? data.pokemon.myPokemonId ? true : false : false) : false;
+  const isFromMyPokemonList = data
+    ? data.pokemon
+      ? data.pokemon.myPokemonId
+        ? true
+        : false
+      : false
+    : false;
   console.log(isFromMyPokemonList);
   const [pokemonData, setPokemonData] = useState(data ? data.pokemon : null);
   console.log(pokemonData);
@@ -125,51 +131,48 @@ function Details(result) {
             </div>
           ) : null}
         </div>
-        <div
-          className={
-            isEditing
-              ? "details-button-container hide"
-              : "details-button-container"
-          }
-        >
-          {!isFromMyPokemonList ? (
-            <Link
-              to={{
-                pathname: "/my-pokemon-action",
-                state: { pokemon: pokemonData, isCatching: true },
-              }}
-              key={pokemonData.id}
-              className="card-link"
-            >
-              <div className="details-button">
-                <img
-                  src={pokeball}
-                  className="details-button-img"
-                  alt={pokeball}
-                />
-                <div className="details-button-text">CATCH</div>
-              </div>
-            </Link>
-          ) : (
-            <Link
-              to={{
-                pathname: "/my-pokemon-action",
-                state: { pokemon: pokemonData, isCatching: false },
-              }}
-              key={pokemonData.id}
-              className="card-link"
-            >
-              <div className="details-button">
-                <img
-                  src={open_pokeball}
-                  className="details-button-img"
-                  alt={open_pokeball}
-                />
-                <div className="details-button-text">RELEASE</div>
-              </div>
-            </Link>
-          )}
-        </div>
+
+        {!isFromMyPokemonList ? (
+          <Link
+            to={{
+              pathname: "/my-pokemon-action",
+              state: { pokemon: pokemonData, isCatching: true },
+            }}
+            key={pokemonData.id}
+            className="details-button-container"
+          >
+            <div className="details-button">
+              <img
+                src={pokeball}
+                className="details-button-img"
+                alt={pokeball}
+              />
+              <div className="details-button-text">CATCH</div>
+            </div>
+          </Link>
+        ) : (
+          <Link
+            to={{
+              pathname: "/my-pokemon-action",
+              state: { pokemon: pokemonData, isCatching: false },
+            }}
+            key={pokemonData.id}
+            className={
+              isEditing
+                ? "details-button-container hide"
+                : "details-button-container"
+            }
+          >
+            <div className="details-button">
+              <img
+                src={open_pokeball}
+                className="details-button-img"
+                alt={open_pokeball}
+              />
+              <div className="details-button-text">RELEASE</div>
+            </div>
+          </Link>
+        )}
       </div>
     </>
   );
