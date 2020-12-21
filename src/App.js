@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import MyPokemonList from "./pages/MyPokemonList";
@@ -17,14 +17,14 @@ function App() {
   return (
     <>
       <ApolloProvider client={client}>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Navbar />
           <div className="container">
             <Switch>
-              <Route path="/pokemon-web-app/" exact component={Home} />
-              <Route path="/pokemon-web-app/my-pokemon-list" exact component={MyPokemonList} />
-              <Route path="/pokemon-web-app/pokemon-details" exact component={PokemonDetails} />
-              <Route path="/pokemon-web-app/my-pokemon-action" exact component={MyPokemonAction} />
+              <Route path="/" exact component={Home} />
+              <Route path="/my-pokemon-list" exact component={MyPokemonList} />
+              <Route path="/pokemon-details" exact component={PokemonDetails} />
+              <Route path="/my-pokemon-action" exact component={MyPokemonAction} />
             </Switch>
           </div>
         </Router>
