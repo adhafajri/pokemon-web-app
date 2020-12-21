@@ -5,6 +5,7 @@
 }
 
 .card-link {
+  width: -webkit-fill-available;
   text-decoration: none;
   color: black;
 }
