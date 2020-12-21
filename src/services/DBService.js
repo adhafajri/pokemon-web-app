@@ -23,7 +23,7 @@ class DBService {
         return tx.complete;
       })
       .then(() => {
-        console.log("Pokemon berhasil di simpan.");
+        console.log("Pokemon catched.");
       });
   }
 
@@ -37,7 +37,7 @@ class DBService {
         return tx.complete;
       })
       .then(function () {
-        console.log("Pokemon berhasil di hapus.");
+        console.log("Pokemon released.");
       });
   }
 
@@ -51,6 +51,7 @@ class DBService {
         })
         .then((pokemons) => {
           resolve(pokemons);
+          console.log("Got your Pokemons!")
         });
     });
   }
@@ -65,6 +66,7 @@ class DBService {
         })
         .then((pokemon) => {
           resolve(pokemon);
+          console.log("Got the Pokemon!")
         });
     });
   }

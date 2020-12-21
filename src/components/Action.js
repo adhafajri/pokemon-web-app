@@ -1,23 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useQuery } from "@apollo/react-hooks";
-import { GET_POKEMONS } from "../graphql/graphql-pokeapi";
 import back from "../images/back.png";
 import forward from "../images/forward.png";
 import footstep from "../images/footprints.png";
 import gotcha from "../images/gotcha.png";
-import "./Catch.css";
+import "./Action.css";
 import { Service } from "../services/DBService";
 import { v4 as uuidv4 } from "uuid";
 
 function Action({ pokemon, isCatching }) {
-  //   const isFromMyPokemonList = pokemon.myPokemonId === undefined ? false : true;
-  // console.log(isSuccessful);
-
   const isSuccessful = Math.random() < 0.5 ? true : false;
   if (isCatching) {
-    console.log(isSuccessful);
-
     if (isSuccessful) {
       catchPokemon();
     }
@@ -55,7 +48,7 @@ function Action({ pokemon, isCatching }) {
               className="action-pokemon-button"
               to={{
                 pathname: "/pokemon-details",
-                state: [{ pokemon: pokemon }],
+                state: { pokemon: pokemon },
               }}
             >
               <img src={forward} alt={forward} />
@@ -65,7 +58,6 @@ function Action({ pokemon, isCatching }) {
               className="action-pokemon-button"
               to={{
                 pathname: "/",
-                state: [{ pokemon: pokemon }],
               }}
             >
               <img src={back} alt={back} />
@@ -82,7 +74,9 @@ function Action({ pokemon, isCatching }) {
   }
 
   function releasePokemon() {
-    Service.releasePokemon(pokemon.myPokemonId);
+    if (pokemon) {
+      Service.releasePokemon(pokemon.myPokemonId);
+    }
   }
 }
 

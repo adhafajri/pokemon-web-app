@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
+import { Redirect } from "react-router-dom";
 import "../App.css";
-import Cards from "../components/Cards";
-import Details from "../components/Details";
-import footstep from "../images/footprints.png";
-import gotcha from "../images/gotcha.png";
 import Action from "../components/Action";
 import { Service } from "../services/DBService";
-import { v4 as uuidv4 } from "uuid";
 
 class MyPokemonAction extends React.Component {
-  render() {
-    const [data] = this.props.location.state;
-    console.log(data);
+  constructor(props) {
+    super(props);
+    console.log(props);
+    this.state = {
+      data: props.location ? props.location.state : null,
+    };
+  }
 
-    const pokemon = data.pokemon;
-    const isCatching = data.isCatching;
+  render() {
+    console.log(this.state.data === undefined);
+    if (this.state.data === undefined) {
+      return <Redirect to="/" />;
+    }
+    console.log(this.state.data);
+
+    const pokemon = this.state.data ? this.state.data.pokemon : null;
+    const isCatching = this.state.data ? this.state.data.isCatching : null;
 
     console.log(pokemon);
-    if (isCatching) {
-      
-    } else {
+    if (!isCatching & pokemon) {
       Service.releasePokemon(pokemon.myPokemonId);
     }
 

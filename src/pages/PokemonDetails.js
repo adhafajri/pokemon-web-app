@@ -1,12 +1,24 @@
 import React from "react";
 import "../App.css";
-import Cards from "../components/Cards";
 import Details from "../components/Details";
+import { Redirect } from "react-router-dom";
 
 class PokemonDetails extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: props.location ? props.location.state : {},
+    };
+  }
+
   render() {
-    const [data] = this.props.location.state;
-    const pokemon = data.pokemon
+    if (!this.state.data) {
+      return <Redirect to="/" />;
+    }
+
+    console.log(this.state.data);
+    const pokemon = this.state.data;
     console.log(pokemon);
 
     return (

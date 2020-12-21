@@ -1,40 +1,31 @@
-import React, { useState } from "react";
-import { useQuery } from "@apollo/react-hooks";
+import React from "react";
 import "../App.css";
 import Cards from "../components/Cards";
-import { GET_POKEMONS } from "../graphql/graphql-pokeapi";
+import { Service } from "../services/DBService";
 
-function Home() {
-  const [limit, setLimit] = useState(20);
-  const {
-    loading,
-    data: { pokemons: { results = [] } = {} } = {},
-    error,
-  } = useQuery(GET_POKEMONS, {
-    variables: { limit: limit, offset: 0 },
-  });
-
-  if (loading) {
-    return <>LOADING!</>;
-  }
-  if (error) {
-    return <>ERROR!</>;
-  }
-  if (!results) {
-    return <>DATA NOT FOUND!</>;
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+    };
+    this.getPokemons();
   }
 
-  return (
-    <>
-      <Cards pokemons={results} />
-      <button className="button" onClick={handleClick}>
-        Load more!
-      </button>
-    </>
-  );
+  getPokemons() {
+    Service.getMyPokemons().then((data) => {
+      this.setState({
+        data: data,
+      });
+    });
+  }
 
-  function handleClick() {
-    setLimit(limit + 20);
+  render() {
+    return (
+      <>
+        <Cards pokemons={this.state.data} />
+      </>
+    );
   }
 }
 

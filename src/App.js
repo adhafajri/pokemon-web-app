@@ -19,15 +19,14 @@ function App() {
       <ApolloProvider client={client}>
         <Router>
           <Navbar />
-          <Switch>
-            <div className="container">
+          <div className="container">
+            <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/my-pokemon-list" exact component={MyPokemonList} />
               <Route path="/pokemon-details" component={PokemonDetails} />
               <Route path="/my-pokemon-action" component={MyPokemonAction} />
-            
-            </div>
-          </Switch>
+            </Switch>
+          </div>
         </Router>
       </ApolloProvider>
     </>

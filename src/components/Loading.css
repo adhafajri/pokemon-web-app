@@ -1,0 +1,23 @@
+.loading-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.loading-image {
+  height: 25vmin;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .loading-image {
+    animation: Spin infinite 20s linear;
+  }
+}
+
+@keyframes Spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

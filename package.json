@@ -1,4 +1,5 @@
 {
+  "homepage": "http://adhafajri.github.io/pokemon-web-app",
   "name": "pokemon-web-app",
   "version": "0.1.0",
   "private": true,
@@ -6,7 +7,6 @@
     "@apollo/client": "^3.3.6",
     "@apollo/react-hooks": "^4.0.0",
     "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
     "apollo-boost": "^0.4.9",
     "dexie": "^3.0.3",
@@ -22,6 +22,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -44,5 +46,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^7.29.0",
+    "@testing-library/react": "^11.2.2",
+    "gh-pages": "^3.1.0"
   }
 }

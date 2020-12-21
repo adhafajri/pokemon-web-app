@@ -97,10 +97,15 @@
   height: 16px;
 }
 
+.center {
+  text-align: center !important;
+}
+
 .details-button-container {
   position: fixed;
   bottom: -1%;
-  left: 32px;
+  left: 45%;
+  right: 45%;
   z-index: 998;
   color: black;
   font-weight: bold;
@@ -137,7 +142,7 @@
 }
 
 .details-button-img {
-  height: 7vmin;
+  height: 15vmin;
 }
 
 .details-button-text {
@@ -270,6 +275,8 @@
     font-size: 1rem;
   }
 
+
+
   .details-values {
     justify-content: flex-start;
   }
@@ -282,5 +289,9 @@
 
   .details-button-text {
     font-size: 1rem;
+  }
+
+  .hide {
+    bottom: -10%;
   }
 }

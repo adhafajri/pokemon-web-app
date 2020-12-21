@@ -1,26 +1,8 @@
-import { render } from "@testing-library/react";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../App.css";
 import Cards from "../components/Cards";
 import { Service } from "../services/DBService";
-
-// function MyPokemonList() {
-//   const [results, setResults] = useState();
-
-//   setResults(
-//     Service.getMyPokemons().then((data) => {
-//       setResults(data);
-//       console.log(results);
-//     })
-//   );
-
-//   console.log(results);
-//   return (
-//     <>
-//       <Cards pokemons={{ results }} />
-//     </>
-//   );
-// }
+import Loading from "../components/Loading";
 
 class MyPokemonList extends React.Component {
   constructor(props) {
@@ -47,7 +29,7 @@ class MyPokemonList extends React.Component {
         </>
       );
     } else {
-      return <>Loading</>;
+      return <Loading />;
     }
   }
 }

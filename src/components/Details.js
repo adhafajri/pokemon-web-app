@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Service } from "../services/DBService";
-import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
 import "./Details.css";
 import edit from "../images/edit.png";
@@ -8,16 +7,23 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_POKEMON } from "../graphql/graphql-pokeapi";
 import open_pokeball from "../images/open_pokeball.png";
 import pokeball from "../images/pokeball.png";
+import Loading from "./Loading";
 
 function Details(result) {
-  const data = result.pokemon;
-  const isFromMyPokemonList = data.myPokemonId === undefined ? false : true;
+  console.log(result.pokemon);
+  const data = result ? result.pokemon : null;
+  console.log(data);
+  const isFromMyPokemonList = data ? (data.pokemon ? data.pokemon.myPokemonId ? true : false : false) : false;
+  console.log(isFromMyPokemonList);
+  const [pokemonData, setPokemonData] = useState(data ? data.pokemon : null);
+  console.log(pokemonData);
+  const [pokemonName, setPokemonName] = useState(
+    pokemonData ? pokemonData.name : null
+  );
   const { loading, data: { pokemon = [] } = {} } = useQuery(GET_POKEMON, {
-    variables: { name: data.name },
+    variables: { name: pokemonName },
     skip: isFromMyPokemonList,
   });
-  const [pokemonData, setPokemonData] = useState(data);
-  const [pokemonName, setPokemonName] = useState(pokemonData.name);
 
   const [isEditing, setIsEditing] = useState(false);
   const inputName = useRef();
@@ -29,13 +35,14 @@ function Details(result) {
   }, [isEditing]);
 
   useEffect(() => {
-    setPokemonData({ ...pokemonData, name: pokemonName });
+    setPokemonData((prevData) => {
+      return { ...prevData, name: pokemonName };
+    });
   }, [pokemonName]);
 
   useEffect(() => {
-    if (loading) {
-      return <>Loading!</>;
-    } else {
+    if (!loading) {
+      console.log(pokemon);
       if (!isFromMyPokemonList) {
         setPokemonData(pokemon);
         console.log(pokemonData);
@@ -43,11 +50,9 @@ function Details(result) {
     }
   }, [loading]);
 
-  // if (loading) {
-  // return <>LOADING!</>;
-  // }
-
-  console.log();
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -60,30 +65,32 @@ function Details(result) {
               alt="item"
             />
           ) : null}
-          {pokemonData.name ? (
-            <form className="details-name-container">
-              <input
-                className="details-name"
-                type="text"
-                ref={inputName}
-                value={pokemonData.name}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                disabled={isEditing ? "" : "disabled"}
-              />
-              {isFromMyPokemonList ? (
-                <div onClick={handleClick} className="details-edit-container">
-                  <img src={edit} className="details-edit" />
-                </div>
-              ) : null}
-            </form>
-          ) : null}
+
+          <form className="details-name-container">
+            <input
+              className={isEditing ? "details-name" : "details-name center"}
+              type="text"
+              ref={inputName}
+              value={pokemonData.name ? pokemonData.name : ""}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              disabled={isEditing ? "" : "disabled"}
+            />
+            {isFromMyPokemonList ? (
+              <div onClick={handleClick} className="details-edit-container">
+                <img src={edit} alt={edit} className="details-edit" />
+              </div>
+            ) : null}
+          </form>
 
           {pokemonData.types ? (
             <div className="details-types-container">
               <div className="details-values">
                 {pokemonData.types.map((type) => (
-                  <div className={`details-value ${type.type.name}`}>
+                  <div
+                    key={type.type.name}
+                    className={`details-value ${type.type.name}`}
+                  >
                     {type.type.name}
                   </div>
                 ))}
@@ -98,7 +105,9 @@ function Details(result) {
               <div className="details-title">ABILITIES</div>
               <div className="details-values">
                 {pokemonData.abilities.map((ability) => (
-                  <div className="details-value">{ability.ability.name}</div>
+                  <div key={ability.ability.name} className="details-value">
+                    {ability.ability.name}
+                  </div>
                 ))}
               </div>
             </div>
@@ -108,18 +117,26 @@ function Details(result) {
               <div className="details-title">MOVES</div>
               <div className="details-values">
                 {pokemonData.moves.map((move) => (
-                  <div className="details-value">{move.move.name}</div>
+                  <div key={move.move.name} className="details-value">
+                    {move.move.name}
+                  </div>
                 ))}
               </div>
             </div>
           ) : null}
         </div>
-        <div className="details-button-container">
+        <div
+          className={
+            isEditing
+              ? "details-button-container hide"
+              : "details-button-container"
+          }
+        >
           {!isFromMyPokemonList ? (
             <Link
               to={{
                 pathname: "/my-pokemon-action",
-                state: [{ pokemon: pokemonData, isCatching: true }],
+                state: { pokemon: pokemonData, isCatching: true },
               }}
               key={pokemonData.id}
               className="card-link"
@@ -137,7 +154,7 @@ function Details(result) {
             <Link
               to={{
                 pathname: "/my-pokemon-action",
-                state: [{ pokemon: pokemonData, isCatching: false }],
+                state: { pokemon: pokemonData, isCatching: false },
               }}
               key={pokemonData.id}
               className="card-link"
@@ -158,7 +175,7 @@ function Details(result) {
   );
 
   function handleKeyDown(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       handleSubmit();
     }
   }

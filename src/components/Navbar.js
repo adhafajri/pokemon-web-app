@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-import { GET_MY_POKEMONS } from "../graphql/graphql-pokeapi";
 import "./Navbar.css";
 import logo from "../images/logo.svg";
 import compass from "../images/compass.png";
@@ -13,14 +12,6 @@ function Navbar() {
   const [locationKeys, setLocationKeys] = useState([]);
   const history = useHistory();
   const isMobile = useMediaQuery({ query: `(max-width: 960px)` });
-  const isActive = () => (match) => {
-    if (match) {
-      onActive(true);
-    } else {
-      onActive(false);
-    }
-    return;
-  };
 
   useEffect(() => {
     return history.listen((location) => {
@@ -28,24 +19,33 @@ function Navbar() {
         setLocationKeys([location.key]);
       }
 
+  
+
+      setDetailsPageActive(history.location.pathname === "/pokemon-details" ? true : false);
+
       if (history.action === "POP") {
         if (locationKeys[1] === location.key) {
-          if (location.pathname === "/catch-pokemon") {
+          if (location.pathname === "/my-pokemon-action") {
             history.replace("/");
           } else {
             setLocationKeys(([_, ...keys]) => keys);
           }
         } else {
-          if (location.pathname === "/catch-pokemon") {
+          if (location.pathname === "/my-pokemon-action") {
             history.replace("/");
           } else {
             setLocationKeys((keys) => [location.key, ...keys]);
           }
         }
-        isActive();
       }
     });
-  }, [locationKeys]);
+  }, [locationKeys, history]);
+
+  useEffect(() => {
+    if (history.location.pathname === "/my-pokemon-action") {
+      window.addEventListener("beforeunload", history.replace("/"));
+    }
+  }, [history]);
 
   return (
     <>
@@ -53,6 +53,17 @@ function Navbar() {
         className={!isDetailsPageActive && isMobile ? "display-none" : "navbar"}
       >
         <div className="navbar-container">
+          {/* <NavLink
+            isActive={(match) => {
+              if (match) {
+                setDetailsPageActive(true)
+              } else {
+                setDetailsPageActive(false)
+              }
+            }}
+            className="display-none"
+            to="/pokemon-details"
+          /> */}
           <Link
             to="/"
             className={
@@ -67,20 +78,15 @@ function Navbar() {
                 isDetailsPageActive && isMobile ? "navbar-item" : "display-none"
               }
             >
-              <a className="navbar-links back" onClick={handleBackClick}>
+              <div className="navbar-links back" onClick={handleBackClick}>
                 <NavItem img={back} text="BACK" />
-              </a>
+              </div>
             </li>
             <li
               className={
                 isDetailsPageActive && isMobile ? "display-none" : "navbar-item"
               }
             >
-              <NavLink
-                isActive={isActive()}
-                className="display-none"
-                to="/pokemon-details"
-              />
               <NavLink className="navbar-links" to="/" exact>
                 <NavItem img={compass} text="EXPLORE" />
               </NavLink>
@@ -133,9 +139,6 @@ function Navbar() {
     </>
   );
 
-  function onActive(bool) {
-    setDetailsPageActive(bool);
-  }
 
   function handleBackClick() {
     history.goBack();
