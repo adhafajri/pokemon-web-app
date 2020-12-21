@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import MyPokemonList from "./pages/MyPokemonList";
@@ -23,8 +23,8 @@ function App() {
             <Switch>
               <Route path="/pokemon-web-app/" exact component={Home} />
               <Route path="/pokemon-web-app/my-pokemon-list" exact component={MyPokemonList} />
-              <Route path="/pokemon-web-app/pokemon-details" component={PokemonDetails} />
-              <Route path="/pokemon-web-app/my-pokemon-action" component={MyPokemonAction} />
+              <Route path="/pokemon-web-app/pokemon-details" exact component={PokemonDetails} />
+              <Route path="/pokemon-web-app/my-pokemon-action" exact component={MyPokemonAction} />
             </Switch>
           </div>
         </Router>
