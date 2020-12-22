@@ -14,7 +14,7 @@
 
 Pokemon Web App is a Web App for... Pokemon! It can do various things such as catch, name, and release your Pokemons!
 
-This app is deployed in [Firebase (Recommended since it's deployed as a PWA)](https://pokemon-web-app.web.app/) and [Github Page](https://adhafajri.github.io/pokemon-web-app/)
+Check out the Web App in [Firebase (Recommended since it's deployed as a PWA)](https://pokemon-web-app.web.app/) and [Github Page](https://adhafajri.github.io/pokemon-web-app/)
 
 
 
