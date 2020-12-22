@@ -25,5 +25,4 @@ This app is deployed in [Firebase (Recommended since it's deployed as a PWA)](ht
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
 - [React Testing Library](https://www.apollographql.com/)
 
-# GraphQL for PokeAPI
 Pokemon Web App is also using [graphql-pokeapi](https://github.com/mazipan/graphql-pokeapi) for providing the Pokemons data.
