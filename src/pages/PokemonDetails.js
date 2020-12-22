@@ -17,9 +17,7 @@ class PokemonDetails extends React.Component {
       return <Redirect to="/" />;
     }
 
-    console.log(this.state.data);
     const pokemon = this.state.data;
-    console.log(pokemon);
 
     return (
       <>

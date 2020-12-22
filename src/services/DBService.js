@@ -18,7 +18,7 @@ class DBService {
       .then((db) => {
         const tx = db.transaction("Pokemons", "readwrite");
         const store = tx.objectStore("Pokemons");
-        console.log(pokemon);
+
         store.put(pokemon);
         return tx.complete;
       })
@@ -51,7 +51,7 @@ class DBService {
         })
         .then((pokemons) => {
           resolve(pokemons);
-          console.log("Got your Pokemons!")
+          console.log("Got your Pokemons!");
         });
     });
   }
@@ -66,7 +66,7 @@ class DBService {
         })
         .then((pokemon) => {
           resolve(pokemon);
-          console.log("Got the Pokemon!")
+          console.log("Got the Pokemon!");
         });
     });
   }
