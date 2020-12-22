@@ -1,3 +1,7 @@
+.loading-container {
+  margin: 16px;
+}
+
 .loading-image-container {
   display: flex;
   justify-content: center;

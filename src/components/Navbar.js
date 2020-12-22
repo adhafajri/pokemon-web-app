@@ -50,17 +50,6 @@ function Navbar() {
         className={!isDetailsPageActive && isMobile ? "display-none" : "navbar"}
       >
         <div className="navbar-container">
-          {/* <NavLink
-            isActive={(match) => {
-              if (match) {
-                setDetailsPageActive(true)
-              } else {
-                setDetailsPageActive(false)
-              }
-            }}
-            className="display-none"
-            to="/pokemon-details"
-          /> */}
           <Link
             to="/"
             className={
