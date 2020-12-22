@@ -8,7 +8,7 @@
 }
 
 .loading-image {
-  height: 25vmin;
+  height: 20vmin;
 }
 
 .loading-text {
@@ -30,5 +30,11 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .loading-image {
+    height: 10vmin;
   }
 }
