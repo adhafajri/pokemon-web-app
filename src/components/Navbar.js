@@ -41,7 +41,6 @@ function Navbar() {
     if (history.location.pathname === "/my-pokemon-action") {
       window.addEventListener("beforeunload", history.replace("/"));
     }
-    setDetailsPageActive(history.location.pathname === "/pokemon-details" ? true : false);
   }, [history]);
 
   return (
@@ -50,6 +49,18 @@ function Navbar() {
         className={!isDetailsPageActive && isMobile ? "display-none" : "navbar"}
       >
         <div className="navbar-container">
+          <NavLink
+            to="/pokemon-details"
+            exact
+            isActive={(match) => {
+              if (match) {
+                setDetailsPageActive(true);
+              } else {
+                setDetailsPageActive(false);
+              }
+            }}
+            className="display-none"
+          />
           <Link
             to="/"
             className={
@@ -124,7 +135,6 @@ function Navbar() {
       </nav>
     </>
   );
-
 
   function handleBackClick() {
     history.goBack();
