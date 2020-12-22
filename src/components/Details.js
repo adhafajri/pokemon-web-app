@@ -10,9 +10,8 @@ import pokeball from "../images/pokeball.png";
 import Loading from "./Loading";
 
 function Details(result) {
-  console.log(result.pokemon);
   const data = result ? result.pokemon : null;
-  console.log(data);
+
   const isFromMyPokemonList = data
     ? data.pokemon
       ? data.pokemon.myPokemonId
@@ -20,9 +19,9 @@ function Details(result) {
         : false
       : false
     : false;
-  console.log(isFromMyPokemonList);
+
   const [pokemonData, setPokemonData] = useState(data ? data.pokemon : null);
-  console.log(pokemonData);
+
   const [pokemonName, setPokemonName] = useState(
     pokemonData ? pokemonData.name : null
   );
@@ -48,10 +47,8 @@ function Details(result) {
 
   useEffect(() => {
     if (!loading) {
-      console.log(pokemon);
       if (!isFromMyPokemonList) {
         setPokemonData(pokemon);
-        console.log(pokemonData);
       }
     }
   }, [loading]);
@@ -186,12 +183,11 @@ function Details(result) {
   function handleChange(event) {
     let value = event.target.value;
     setPokemonName(value);
-    console.log(pokemonData.name);
   }
 
   function handleSubmit() {
     setPokemonData({ ...pokemonData, name: pokemonData.name });
-    console.log(pokemonData);
+
     Service.catchPokemon(pokemonData);
     setIsEditing(false);
   }

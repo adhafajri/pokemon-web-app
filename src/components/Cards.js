@@ -27,7 +27,6 @@ function Cards({ pokemons }) {
     if (!loading) {
       if (!isFromMyPokemonList) {
         setPokemonsData(results);
-        console.log(pokemonsData);
       }
     }
   }, [loading, isFromMyPokemonList, results, pokemonsData]);
@@ -47,7 +46,6 @@ function Cards({ pokemons }) {
       data.forEach((myPokemon) => {
         if (pokemon.id === myPokemon.id) {
           count++;
-          console.log(`${pokemon.name} count: ${count}`);
         }
       });
       pokemon.count = count;
@@ -85,7 +83,6 @@ function Cards({ pokemons }) {
 }
 
 function Card({ pokemon }) {
-  console.log(pokemon);
   const isFromMyPokemonList = pokemon.myPokemonId === undefined ? false : true;
 
   return (
