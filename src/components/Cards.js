@@ -85,7 +85,6 @@ function Cards({ pokemons }) {
 }
 
 function Card({ pokemon }) {
-  console.log(pokemon);
   const isFromMyPokemonList = pokemon.myPokemonId === undefined ? false : true;
 
   return (
