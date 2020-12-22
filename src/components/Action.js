@@ -74,7 +74,7 @@ function Action({ pokemon, isCatching }) {
   }
 
   function releasePokemon() {
-    if (pokemon) {
+    if (pokemon && pokemon.id) {
       Service.releasePokemon(pokemon.myPokemonId);
     }
   }
