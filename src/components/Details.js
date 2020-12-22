@@ -25,10 +25,13 @@ function Details(result) {
   const [pokemonName, setPokemonName] = useState(
     pokemonData ? pokemonData.name : null
   );
-  const { loading, data: { pokemon = [] } = {} } = useQuery(GET_POKEMON, {
-    variables: { name: pokemonName },
-    skip: isFromMyPokemonList,
-  });
+  const { loading, data: { pokemon = [] } = {}, error } = useQuery(
+    GET_POKEMON,
+    {
+      variables: { name: pokemonName },
+      skip: isFromMyPokemonList,
+    }
+  );
 
   const [isEditing, setIsEditing] = useState(false);
   const inputName = useRef();
@@ -55,6 +58,14 @@ function Details(result) {
 
   if (loading) {
     return <Loading />;
+  }
+
+  if (error) {
+    return (
+      <>
+        <Loading text={"No data found!"} />
+      </>
+    );
   }
 
   return (

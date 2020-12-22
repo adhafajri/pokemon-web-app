@@ -34,8 +34,7 @@ function Cards({ pokemons }) {
   if (error) {
     return (
       <>
-        <Loading />
-        ERROR!
+        <Loading text={"No data found!"} />
       </>
     );
   }
