@@ -1,7 +1,7 @@
 {
   "homepage": "http://adhafajri.github.io/pokemon-web-app",
   "name": "pokemon-web-app",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.6",
