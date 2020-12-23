@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Service } from "../services/DBService";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import "./Details.css";
 import edit from "../images/edit.png";
 import { useQuery } from "@apollo/react-hooks";
@@ -19,6 +20,7 @@ function Details(result) {
         : false
       : false
     : false;
+  const isSuccessful = Math.random() < 0.5 ? true : false;
 
   const [pokemonData, setPokemonData] = useState(data ? data.pokemon : null);
 
@@ -140,8 +142,13 @@ function Details(result) {
           <Link
             to={{
               pathname: "/my-pokemon-action",
-              state: { pokemon: pokemonData, isCatching: true },
+              state: {
+                pokemon: pokemonData,
+                isCatching: true,
+                isSuccessful: isSuccessful,
+              },
             }}
+            onClick={handleCatchPokemon}
             key={pokemonData.id}
             className="details-button-container"
           >
@@ -160,6 +167,7 @@ function Details(result) {
               pathname: "/my-pokemon-action",
               state: { pokemon: pokemonData, isCatching: false },
             }}
+            onClick={handleReleasePokemon}
             key={pokemonData.id}
             className={
               isEditing
@@ -180,6 +188,20 @@ function Details(result) {
       </div>
     </>
   );
+
+  function handleCatchPokemon() {
+    if (isSuccessful) {
+      const pokemon = pokemonData;
+      pokemon.myPokemonId = uuidv4();
+      Service.catchPokemon(pokemonData);
+    }
+  }
+
+  function handleReleasePokemon() {
+    if (pokemonData.myPokemonId) {
+      Service.releasePokemon(pokemonData.myPokemonId);
+    }
+  }
 
   function handleKeyDown(event) {
     if (event.keyCode === 13) {
