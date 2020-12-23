@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { Link, useHistory } from "react-router-dom";
 import { GET_POKEMONS } from "../graphql/graphql-pokeapi";
+import { Service } from "../services/DBService";
 import open_pokeball from "../images/open_pokeball.png";
 import Loading from "./Loading";
 import "./Cards.css";
@@ -119,6 +120,7 @@ function Card({ pokemon }) {
                 pathname: "/my-pokemon-action",
                 state: { pokemon: pokemon, isCatching: false },
               }}
+              onClick={handleReleasePokemon}
               className="button-container button card-link"
             >
               <img
@@ -133,6 +135,12 @@ function Card({ pokemon }) {
       </div>
     </>
   );
+
+  function handleReleasePokemon() {
+    if (pokemon.myPokemonId) {
+      Service.releasePokemon(pokemon.myPokemonId);
+    }
+  }
 }
 
 export default Cards;

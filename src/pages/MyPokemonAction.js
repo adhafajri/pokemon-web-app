@@ -2,7 +2,6 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import "../App.css";
 import Action from "../components/Action";
-import { Service } from "../services/DBService";
 
 class MyPokemonAction extends React.Component {
   constructor(props) {
@@ -20,14 +19,15 @@ class MyPokemonAction extends React.Component {
 
     const pokemon = this.state.data ? this.state.data.pokemon : null;
     const isCatching = this.state.data ? this.state.data.isCatching : null;
-
-    if (!isCatching & pokemon) {
-      Service.releasePokemon(pokemon.myPokemonId);
-    }
+    const isSuccessful = this.state.data ? this.state.data.isSuccessful : null;
 
     return (
       <>
-        <Action pokemon={pokemon} isCatching={isCatching} />
+        <Action
+          pokemon={pokemon}
+          isCatching={isCatching}
+          isSuccessful={isSuccessful}
+        />
       </>
     );
   }

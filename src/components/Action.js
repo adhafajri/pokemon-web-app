@@ -5,19 +5,8 @@ import forward from "../images/forward.png";
 import footstep from "../images/footprints.png";
 import gotcha from "../images/gotcha.png";
 import "./Action.css";
-import { Service } from "../services/DBService";
-import { v4 as uuidv4 } from "uuid";
 
-function Action({ pokemon, isCatching }) {
-  const isSuccessful = Math.random() < 0.5 ? true : false;
-  if (isCatching) {
-    if (isSuccessful) {
-      catchPokemon();
-    }
-  } else {
-    releasePokemon();
-  }
-
+function Action({ pokemon, isCatching, isSuccessful }) {
   return (
     <>
       <div className="action-pokemon-container">
@@ -67,17 +56,6 @@ function Action({ pokemon, isCatching }) {
       </div>
     </>
   );
-
-  function catchPokemon() {
-    pokemon.myPokemonId = uuidv4();
-    Service.catchPokemon(pokemon);
-  }
-
-  function releasePokemon() {
-    if (pokemon && pokemon.id) {
-      Service.releasePokemon(pokemon.myPokemonId);
-    }
-  }
 }
 
 export default Action;
